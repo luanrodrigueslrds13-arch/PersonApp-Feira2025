@@ -28,6 +28,7 @@ Formate a saída EXCLUSIVAMENTE como JSON válido:
   "personas": [
     {
       "nome": "Carla",
+      "genero": "feminino",
       "descricao": "…",
       "objetivos": ["…","…"],
       "desafios": ["…","…"],
