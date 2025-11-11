@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#054179"/>
-  <title>PersonApp — Beta IA (Clean)</title>
+  <title>PersonApp — Beta IA</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="assets/icon-192.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="assets/icon-512.png" />
@@ -13,9 +13,7 @@
 </head>
 <body>
   <div id="app">
-    <section class="view active" id="view-splash">
-      <div class="splash-card"><img src="assets/logo-personapp.png" alt="Logo PersonApp" class="splash-logo"/></div>
-    </section>
+    <section class="view active" id="view-splash"><div class="splash-card"><img src="assets/logo-personapp.png" alt="Logo PersonApp" class="splash-logo"/></div></section>
     <section class="view" id="view-home">
       <header class="topbar"><h1 class="appname">PersonApp</h1></header>
       <main class="content">
@@ -27,7 +25,7 @@
           <button class="btn ghost" id="btn-minhas">Minhas personas</button>
         </div>
       </main>
-      <footer class="foot">Versão Beta — IA desconectada (configure sua chave em Settings → Env Vars).</footer>
+      <footer class="foot">Versão Beta — IA conectada via OpenAI.</footer>
     </section>
     <div id="steps-root"></div>
     <section class="view" id="view-loading"><main class="content center"><div class="spinner"></div><p class="lead">Gerando com IA…</p></main></section>
@@ -63,20 +61,22 @@
     </section>
     <section class="view" id="view-sobre">
       <header class="topbar"><h2>Sobre o PersonApp</h2></header>
-<main class="content">
-  <p class="body">Aplicativo desenvolvido para criar personas de forma simplificada com o apoio da inteligência artificial.</p>
-  <p class="body">Versão Beta apresentada na <b>Feira das Profissões 2025</b>.</p>
-  <p class="body">Desenvolvido por alunos do curso técnico, com foco em inovação, design e acessibilidade digital.</p>
-  <div class="about-logo"><img src="assets/logo-personapp.png" alt="Logo PersonApp" /></div>
-  <div class="row"><button class="btn ghost" data-next="view-home">Voltar à Home</button></div>
-</main>
+      <main class="content">
+        <p class="body"><b>PersonApp – Seu público, sua persona!</b></p>
+        <p class="body">Aplicativo desenvolvido para criar personas de forma simplificada com o apoio da inteligência artificial.</p>
+        <p class="body">Versão Beta apresentada na <b>Feira das Profissões 2025</b>.</p>
+        <p class="body">Desenvolvido por alunos do curso técnico, com foco em inovação, design e acessibilidade digital.</p>
+        <div class="about-logo"><img src="assets/logo-personapp.png" alt="Logo PersonApp" /></div>
+        <div class="row"><button class="btn ghost" data-next="view-home">Voltar à Home</button></div>
+      </main>
     </section>
   </div>
   <div id="modal-conceito" class="modal hidden">
     <div class="modal-backdrop" data-close="modal"></div>
     <div class="modal-card">
       <h3>O que é uma persona?</h3>
-      <p>Persona é um <b>perfil semifictício</b> criado a partir de dados reais do seu público-alvo...</p>
+      <p>Persona é um <b>perfil semifictício</b> criado a partir de dados reais do seu público-alvo. Ela representa o cliente ideal com nome, objetivos, desafios, motivações e canais de comunicação.</p>
+      <p class="hint">Exemplo: “Carla, 25 anos, estudante de marketing que busca aprender ferramentas digitais para melhorar sua empregabilidade.”</p>
       <div class="row"><button class="btn" data-close="modal">Entendi</button></div>
     </div>
   </div>
