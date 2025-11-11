@@ -120,9 +120,21 @@ document.addEventListener('click', e=>{
 });
 
 // Avatar helper (DiceBear avataaars)
-function setAvatar(nome){
-  const img=document.getElementById('p-avatar'); const seed=(nome||'P').trim()||'P';
-  img.src='https://api.dicebear.com/8.x/'+CONFIG.AVATAR_STYLE+'/svg?seed='+encodeURIComponent(seed);
+function setAvatar(nome, genero){
+  const img = document.getElementById('p-avatar');
+  const seed = (nome || 'P').trim() || 'P';
+  const g = (genero || '').toLowerCase();
+
+  // Map simples por gênero:
+  // - masculino → adventurer (tende a traços mais masculinos)
+  // - feminino  → lorelei (traços mais femininos)
+  // - sem info  → avataaars (neutro/cartoon profissional)
+  const style =
+    g.startsWith('masc') ? 'adventurer' :
+    g.startsWith('fem')  ? 'lorelei'    :
+                           'avataaars';
+
+  img.src = `https://api.dicebear.com/8.x/${style}/svg?seed=${encodeURIComponent(seed)}`;
 }
 function setText(id, val){ document.getElementById(id).textContent = val || ""; }
 function fillList(id, arr){ const el=document.getElementById(id); el.innerHTML=""; (arr||[]).forEach(t=>{ const li=document.createElement('li'); li.textContent=t; el.appendChild(li); }); }
