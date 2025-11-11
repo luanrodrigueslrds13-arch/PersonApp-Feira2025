@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#054179"/>
+  <title>PersonApp — Beta IA (Clean)</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="assets/icon-512.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <section class="view active" id="view-splash">
+      <div class="splash-card"><img src="assets/logo-personapp.png" alt="Logo PersonApp" class="splash-logo"/></div>
+    </section>
+    <section class="view" id="view-home">
+      <header class="topbar"><h1 class="appname">PersonApp</h1></header>
+      <main class="content">
+        <p class="lead">Crie personas de forma simples e rápida com inteligência artificial.</p>
+        <button class="btn primary" data-next="view-step-1">Gerar minha persona</button>
+        <div class="row">
+          <button class="btn ghost" id="btn-sobre">Sobre</button>
+          <button class="btn ghost sm" id="btn-conceito-sobre">O que é persona?</button>
+          <button class="btn ghost" id="btn-minhas">Minhas personas</button>
+        </div>
+      </main>
+      <footer class="foot">Versão Beta — IA desconectada (configure sua chave em Settings → Env Vars).</footer>
+    </section>
+    <div id="steps-root"></div>
+    <section class="view" id="view-loading"><main class="content center"><div class="spinner"></div><p class="lead">Gerando com IA…</p></main></section>
+    <section class="view" id="view-persona">
+      <header class="topbar"><h2>Persona</h2></header>
+      <main class="content">
+        <div class="card persona" id="persona-card">
+          <div class="avatar-wrap"><img id="p-avatar" alt="avatar" /></div>
+          <h3 id="p-nome">Carla</h3>
+          <p id="p-descricao" class="body"></p>
+          <div class="grid">
+            <div><h4>🎯 Objetivos</h4><ul id="p-objetivos"></ul></div>
+            <div><h4>⚡ Desafios</h4><ul id="p-desafios"></ul></div>
+            <div><h4>💡 Motivações</h4><ul id="p-motivacoes"></ul></div>
+            <div><h4>📱 Canais</h4><ul id="p-canais"></ul></div>
+          </div>
+          <blockquote id="p-frase" class="frase"></blockquote>
+        </div>
+      </main>
+      <footer class="actions wrap">
+        <button class="btn" id="btn-salvar">💾 Salvar</button>
+        <button class="btn" id="btn-editar">✏️ Editar</button>
+        <button class="btn" id="btn-exportar">📸 Exportar</button>
+        <button class="btn ghost" data-next="view-home">🏠 Home</button>
+      </footer>
+    </section>
+    <section class="view" id="view-minhas">
+      <header class="topbar"><h2>Minhas Personas</h2></header>
+      <main class="content">
+        <div id="lista-personas" class="list"></div>
+        <button class="btn primary" data-next="view-step-1">+ Nova Persona</button>
+      </main>
+    </section>
+    <section class="view" id="view-sobre">
+      <header class="topbar"><h2>Sobre o PersonApp</h2></header>
+      <main class="content">
+        <p class="body">Protótipo do aplicativo PersonApp – Feira das Profissões 2025.</p>
+        <p class="body">Esta versão está <b>limpa</b>, pronta para reconectar a IA.</p>
+        <div class="helper"><b>Diagnóstico:</b> acesse <code>/api/debug-env</code> para verificar <code>OPENAI_API_KEY</code>.</div>
+        <div class="about-logo"><img src="assets/logo-personapp.png" alt="Logo PersonApp" /></div>
+        <div class="row"><button class="btn ghost" data-next="view-home">Voltar à Home</button></div>
+      </main>
+    </section>
+  </div>
+  <div id="modal-conceito" class="modal hidden">
+    <div class="modal-backdrop" data-close="modal"></div>
+    <div class="modal-card">
+      <h3>O que é uma persona?</h3>
+      <p>Persona é um <b>perfil semifictício</b> criado a partir de dados reais do seu público-alvo...</p>
+      <div class="row"><button class="btn" data-close="modal">Entendi</button></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));}</script>
+</body>
+</html>
