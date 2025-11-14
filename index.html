@@ -3,87 +3,208 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#054179"/>
-  <title>PersonApp — Beta IA</title>
+  <meta name="theme-color" content="#054179" />
+  <title>PersonApp — Seu público, sua persona!</title>
+
+  <!-- PWA (opcional, se já existir manifest no projeto) -->
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="assets/icon-192.png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="assets/icon-512.png" />
+
+  <!-- Ícone do app -->
+  <link rel="icon" href="assets/icon-personapp.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="assets/icon-personapp.png" />
+
+  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div id="app">
-    <section class="view active" id="view-splash"><div class="splash-card"><img src="assets/logo-personapp.png" alt="Logo PersonApp" class="splash-logo"/></div></section>
+    <!-- SPLASH: Ícone do app -->
+    <section class="view active" id="view-splash">
+      <div class="splash-card">
+        <img src="assets/icon-personapp.png" alt="Ícone PersonApp" class="splash-icon" />
+      </div>
+    </section>
+
+    <!-- HOME: apenas o nome PersonApp -->
     <section class="view" id="view-home">
-      <header class="topbar"><h1 class="appname">PersonApp</h1></header>
+      <header class="topbar">
+        <h1 class="appname">PersonApp</h1>
+      </header>
       <main class="content">
         <p class="lead">Crie personas de forma simples e rápida com inteligência artificial.</p>
-        <button class="btn primary" data-next="view-step-1">Gerar minha persona</button>
+
+        <button class="btn primary" data-next="view-step-1">
+          Gerar minha persona
+        </button>
+
         <div class="row">
           <button class="btn ghost" id="btn-sobre">Sobre</button>
-          <button class="btn ghost sm" id="btn-conceito-sobre">O que é persona?</button>
+          <button class="btn ghost" id="btn-oque-persona">O que é persona?</button>
           <button class="btn ghost" id="btn-minhas">Minhas personas</button>
         </div>
       </main>
-      <footer class="foot">Versão Beta — IA conectada via OpenAI.</footer>
+      <footer class="foot">
+        Versão Beta — IA conectada via OpenAI.
+      </footer>
     </section>
+
+    <!-- As 6 etapas serão criadas dinamicamente pelo app.js -->
     <div id="steps-root"></div>
-    <section class="view" id="view-loading"><main class="content center"><div class="spinner"></div><p class="lead">Gerando com IA…</p></main></section>
+
+    <!-- TELA DE CARREGAMENTO (IA) -->
+    <section class="view" id="view-loading">
+      <main class="content center">
+        <div class="spinner"></div>
+        <p class="lead">Gerando com IA…</p>
+      </main>
+    </section>
+
+    <!-- PERFIL DA PERSONA GERADA -->
     <section class="view" id="view-persona">
-      <header class="topbar"><h2>Persona</h2></header>
+      <header class="topbar">
+        <h2>Persona gerada</h2>
+      </header>
+
       <main class="content">
         <div class="card persona" id="persona-card">
-          <div class="avatar-wrap"><img id="p-avatar" alt="avatar" /></div>
-          <h3 id="p-nome">Carla</h3>
-          <p id="p-descricao" class="body"></p>
-          <div class="grid">
-            <div><h4>🎯 Objetivos</h4><ul id="p-objetivos"></ul></div>
-            <div><h4>⚡ Desafios</h4><ul id="p-desafios"></ul></div>
-            <div><h4>💡 Motivações</h4><ul id="p-motivacoes"></ul></div>
-            <div><h4>📱 Canais</h4><ul id="p-canais"></ul></div>
+          <div class="avatar-wrap">
+            <img id="p-avatar" alt="avatar" />
           </div>
+
+          <h3 id="p-nome">Carla</h3>
+          <p id="p-idade" class="body small"></p>
+          <p id="p-descricao" class="body"></p>
+
+          <div class="grid">
+            <div>
+              <h4>🎯 Objetivos</h4>
+              <ul id="p-objetivos"></ul>
+            </div>
+            <div>
+              <h4>⚡ Desafios</h4>
+              <ul id="p-desafios"></ul>
+            </div>
+            <div>
+              <h4>💡 Motivações</h4>
+              <ul id="p-motivacoes"></ul>
+            </div>
+            <div>
+              <h4>📱 Canais</h4>
+              <ul id="p-canais"></ul>
+            </div>
+          </div>
+
           <blockquote id="p-frase" class="frase"></blockquote>
         </div>
       </main>
+
       <footer class="actions wrap">
         <button class="btn" id="btn-salvar">💾 Salvar</button>
         <button class="btn" id="btn-editar">✏️ Editar</button>
         <button class="btn" id="btn-exportar">📸 Exportar</button>
-        <button class="btn ghost" data-next="view-home">🏠 Home</button>
+        <button class="btn" id="btn-estrategias">💡 O que fazer com minha persona?</button>
+        <button class="btn ghost" data-next="view-home">🏠 Página Inicial</button>
       </footer>
     </section>
+
+    <!-- MINHAS PERSONAS -->
     <section class="view" id="view-minhas">
-      <header class="topbar"><h2>Minhas Personas</h2></header>
-      <main class="content center-text">
+      <header class="topbar">
+        <h2>Minhas personas</h2>
+      </header>
+      <main class="content">
         <div id="lista-personas" class="list"></div>
-        <button class="btn primary" data-next="view-step-1">+ Nova Persona</button>
+
+        <button class="btn primary" data-next="view-step-1">
+          + Nova persona
+        </button>
       </main>
     </section>
+
+    <!-- PÁGINA SOBRE -->
     <section class="view" id="view-sobre">
-      <header class="topbar"><h2>Sobre o PersonApp</h2></header>
-      <main class="content">
-        <p class="body"><b>PersonApp – Seu público, sua persona!</b></p>
-        <p class="body">Aplicativo desenvolvido para criar personas de forma simplificada com o apoio da inteligência artificial.</p>
-        <p class="body">Versão Beta apresentada na <b>Feira das Profissões 2025</b>.</p>
-        <p class="body">Desenvolvido pelos alunos do 1º Ano B – Curso Técnico em Marketing Digital do CETI Conselheiro Saraiva, com foco em criatividade, inovação e estratégias digitais.
-Integrando prática e tecnologia aplicada à comunicação e ao marketing.</p>
-        <div class="about-logo"><img src="assets/logo-personapp.png" alt="Logo PersonApp" /></div>
-        <div class="row"><button class="btn ghost" data-next="view-home">Voltar à Home</button></div>
+      <header class="topbar">
+        <h2>Sobre o PersonApp</h2>
+      </header>
+
+      <main class="content center-text">
+        <p class="body">
+          <b>PersonApp – Seu público, sua persona!</b>
+        </p>
+
+        <p class="body">
+          Aplicativo desenvolvido para criar personas de forma simplificada com o apoio da inteligência artificial.
+        </p>
+
+        <p class="body">
+          Versão Beta apresentada no Dia "D" da EPT nas Escolas SEDUC 2025 – Tema Geral:
+          <b>Conectando Saberes, Transformando Futuro.</b>
+        </p>
+
+        <p class="body">
+          Desenvolvido pelos alunos do <b>1º Ano B – Curso Técnico em Marketing Digital</b>.<br />
+          <b>CETI Conselheiro Saraiva</b> – "Futuro em Movimento: Tecnologia, Ciências e Direitos Humanos."
+        </p>
+
+        <div class="about-logo">
+          <!-- Ajuste o caminho abaixo para o arquivo real da sua logomarca oficial -->
+          <img src="assets/logo-personapp.png" alt="Logomarca PersonApp" />
+        </div>
+
+        <div class="row about-actions">
+          <button class="btn ghost" data-next="view-home">Voltar</button>
+        </div>
       </main>
     </section>
   </div>
-  <div id="modal-conceito" class="modal hidden">
-    <div class="modal-backdrop" data-close="modal"></div>
+
+  <!-- MODAL: O que é persona? -->
+  <div id="modal-persona" class="modal hidden">
+    <div class="modal-backdrop" data-close="persona"></div>
     <div class="modal-card">
-      <h3>O que é uma persona?</h3>
-      <p>Persona é um <b>perfil semifictício</b> criado a partir de dados reais do seu público-alvo. Ela representa o cliente ideal com nome, objetivos, desafios, motivações e canais de comunicação.</p>
-      <p class="hint">Exemplo: “Carla, 25 anos, estudante de marketing que busca aprender ferramentas digitais para melhorar sua empregabilidade.”</p>
-      <div class="row"><button class="btn" data-close="modal">Entendi</button></div>
+      <h3>O que é persona?</h3>
+      <p>
+        Persona é um <b>perfil semifictício</b> baseado em dados reais, que representa o cliente ideal de um negócio.
+      </p>
+      <p class="hint">
+        Ela ajuda a definir linguagem, canais, conteúdos e estratégias de marketing mais assertivas.
+      </p>
+
+      <div class="row">
+        <a
+          class="btn ghost"
+          href="https://sebrae.com.br/Sebrae/Portal%20Sebrae/UFs/PE/Anexos/Guia-pratico-para-criar-a-persona-do-seu-negocio.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Saiba mais
+        </a>
+
+        <button class="btn" data-close="persona">Entendi</button>
+      </div>
     </div>
   </div>
+
+  <!-- MODAL: Estratégias para a persona -->
+  <div id="modal-estrategias" class="modal hidden">
+    <div class="modal-backdrop" data-close="estrategias"></div>
+    <div class="modal-card">
+      <h3>O que fazer com minha persona?</h3>
+      <p class="hint" id="estrategias-status">Gerando estratégias com IA…</p>
+      <div id="estrategias-conteudo" class="body"></div>
+
+      <div class="row">
+        <button class="btn" data-close="estrategias">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));}</script>
 </body>
 </html>
