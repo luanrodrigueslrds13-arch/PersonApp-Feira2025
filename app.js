@@ -251,9 +251,20 @@ function setAvatar(nome, genero) {
   const base = (nome || "Persona").trim() || "Persona";
   const seed = base.replace(/\s+/g, "_").toLowerCase();
 
-  // Estilo super neutro: só iniciais, sem rosto
-  const style = "initials";
-  const params = "radius=50&backgroundColor=f4f4f5";
+  // Estilo com rosto ilustrado e expressão neutra
+  const style = "adventurer-neutral";
+
+  const gen = (genero || "").toLowerCase();
+  const isMasc = gen.startsWith("masc");
+  const isFem = gen.startsWith("fem");
+
+  // Só para variar um pouco o fundo por gênero (mas nada exagerado)
+  let bg = "fbbf24"; // amarelo suave
+  if (isFem) bg = "f97316";      // laranja suave
+  else if (isMasc) bg = "60a5fa"; // azul suave
+
+  // radius deixa o avatar circular
+  const params = `radius=50&backgroundColor=${bg}`;
 
   img.src = `https://api.dicebear.com/8.x/${style}/svg?seed=${encodeURIComponent(seed)}&${params}`;
 }
