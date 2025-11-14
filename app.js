@@ -6,6 +6,23 @@ const CONFIG = {
   ESTRATEGIAS_URL: "/api/estrategias-persona",
 };
 
+// Avatares locais fixos
+const AVATARS_MASC = [
+  "assets/avatars/avatar_m1.png",
+  "assets/avatars/avatar_m2.png",
+  "assets/avatars/avatar_m3.png",
+  "assets/avatars/avatar_m4.png",
+  "assets/avatars/avatar_m5.png",
+];
+
+const AVATARS_FEM = [
+  "assets/avatars/avatar_f1.png",
+  "assets/avatars/avatar_f2.png",
+  "assets/avatars/avatar_f3.png",
+  "assets/avatars/avatar_f4.png",
+  "assets/avatars/avatar_f5.png",
+];
+
 // ==============================
 // DEFINIÇÃO DAS 6 ETAPAS
 // ==============================
@@ -244,28 +261,32 @@ function inferirGeneroPorNome(nome) {
 }
 
 // ==============================
-// AVATAR (DiceBear) — NEUTRO POR INICIAIS
+// AVATAR
 // ==============================
 function setAvatar(nome, genero) {
   const img = document.getElementById("p-avatar");
-  const base = (nome || "Persona").trim() || "Persona";
-  const seed = base.replace(/\s+/g, "_").toLowerCase();
-
-  // Estilo com rostos ilustrados, neutros
-  const style = "notionists-neutral";
-
   const gen = (genero || "").toLowerCase();
-  let bg = "fbbf24"; // amarelo suave padrão
+
+  let listaBase;
 
   if (gen.startsWith("fem")) {
-    bg = "f97316"; // laranja suave
+    listaBase = AVATARS_FEM;
   } else if (gen.startsWith("masc")) {
-    bg = "60a5fa"; // azul suave
+    listaBase = AVATARS_MASC;
+  } else {
+    // Se a IA não informar gênero, mistura todos
+    listaBase = [...AVATARS_MASC, ...AVATARS_FEM];
   }
 
-  const params = `radius=50&backgroundColor=${bg}`;
+  // Índice estável a partir do nome (pra não ficar trocando toda hora)
+  const base = (nome || "persona").toLowerCase();
+  let soma = 0;
+  for (let i = 0; i < base.length; i++) {
+    soma += base.charCodeAt(i);
+  }
+  const idx = soma % listaBase.length;
 
-  img.src = `https://api.dicebear.com/8.x/${style}/svg?seed=${encodeURIComponent(seed)}&${params}`;
+  img.src = listaBase[idx];
 }
 
 // ==============================
