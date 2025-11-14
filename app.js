@@ -1,5 +1,5 @@
 // ==============================
-// CONFIG
+// CONFIGURAÇÃO
 // ==============================
 const CONFIG = {
   API_URL: "/api/generate-persona",
@@ -210,9 +210,7 @@ document.getElementById("btn-minhas").addEventListener("click", () => {
   show("view-minhas");
 });
 
-// ==============================
-// MODAL: O que é persona?
-// ==============================
+// Modal "O que é persona?"
 document.getElementById("btn-oque-persona").addEventListener("click", () => {
   document.getElementById("modal-persona").classList.remove("hidden");
 });
@@ -246,20 +244,16 @@ function inferirGeneroPorNome(nome) {
 }
 
 // ==============================
-// AVATAR (DiceBear) — neutro e por gênero
+// AVATAR (DiceBear) — NEUTRO POR INICIAIS
 // ==============================
 function setAvatar(nome, genero) {
   const img = document.getElementById("p-avatar");
   const base = (nome || "Persona").trim() || "Persona";
   const seed = base.replace(/\s+/g, "_").toLowerCase();
-  const g = (genero || "").toLowerCase();
 
-  const style =
-    g.startsWith("masc") ? "adventurer-neutral" :
-    g.startsWith("fem")  ? "lorelei" :
-                           "avataaars";
-
-  const params = "radius=50&flip=false";
+  // Estilo super neutro: só iniciais, sem rosto
+  const style = "initials";
+  const params = "radius=50&backgroundColor=f4f4f5";
 
   img.src = `https://api.dicebear.com/8.x/${style}/svg?seed=${encodeURIComponent(seed)}&${params}`;
 }
@@ -556,6 +550,7 @@ async function gerarEstrategiasParaPersona() {
     });
     contEl.appendChild(ul);
   } catch (e) {
+    console.error(e);
     statusEl.textContent = "Não foi possível gerar agora. Tente novamente.";
   }
 }
