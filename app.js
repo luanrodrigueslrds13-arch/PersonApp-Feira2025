@@ -579,7 +579,7 @@ async function gerarEstrategiasParaPersona() {
 
     const data = await r.json();
     const lista = data.estrategias || [];
-
+    window.currentPersona.estrategiasGeradas = lista;
     statusEl.textContent = "";
 
     if (!lista.length) {
@@ -598,4 +598,79 @@ async function gerarEstrategiasParaPersona() {
     console.error(e);
     statusEl.textContent = "Não foi possível gerar agora. Tente novamente.";
   }
+}
+// ==============================
+// EXPORTAR ESTRATÉGIAS EM PDF
+// ==============================
+function exportEstrategiasPDF() {
+  if (!window.currentPersona || !Array.isArray(window.currentPersona.estrategiasGeradas) || !window.currentPersona.estrategiasGeradas.length) {
+    alert("Nenhuma estratégia disponível para salvar.");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({
+    unit: "mm",
+    format: "a4",
+    orientation: "portrait",
+  });
+
+  const nome = window.currentPersona.nome || "persona";
+  const estrategias = window.currentPersona.estrategiasGeradas;
+
+  const pageW = 210;
+  const margin = 15;
+  let y = 20;
+
+  // Título
+  doc.setFontSize(16);
+  doc.text(`Estratégias para ${nome}`, margin, y);
+  y += 8;
+
+  // Subtítulo
+  doc.setFontSize(11);
+  doc.text("Sugestões geradas pela IA com base na sua persona.", margin, y);
+  y += 10;
+
+  doc.setFontSize(11);
+
+  estrategias.forEach((estr, idx) => {
+    const bullet = `${idx + 1}. ${estr}`;
+    const wrapped = doc.splitTextToSize(bullet, pageW - margin * 2);
+
+    // Quebra de página se estiver muito embaixo
+    if (y + wrapped.length * 6 > 280) {
+      doc.addPage();
+      y = 20;
+    }
+
+    wrapped.forEach((linha) => {
+      doc.text(linha, margin, y);
+      y += 6;
+    });
+
+    y += 4; // espaço entre estratégias
+  });
+
+  // Rodapé
+  if (y > 280) {
+    doc.addPage();
+    y = 20;
+  }
+  doc.setFontSize(9);
+  doc.text(
+    "PersonApp – Estratégias geradas por IA",
+    pageW / 2,
+    290,
+    { align: "center" }
+  );
+
+  const nomeArquivo = (nome || "persona").toLowerCase().replace(/\s+/g, "-");
+  doc.save(`estrategias-${nomeArquivo}.pdf`);
+}
+
+// Listener do botão do modal
+const btnSalvarEstr = document.getElementById("btn-salvar-estrategias");
+if (btnSalvarEstr) {
+  btnSalvarEstr.addEventListener("click", exportEstrategiasPDF);
 }
