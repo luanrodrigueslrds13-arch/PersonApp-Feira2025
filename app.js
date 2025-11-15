@@ -26,6 +26,9 @@ const AVATARS_FEM = [
 // ==============================
 // DEFINIÇÃO DAS 6 ETAPAS
 // ==============================
+// ==============================
+// DEFINIÇÃO DAS 6 ETAPAS
+// ==============================
 const steps = [
   {
     id: "view-step-1",
@@ -41,7 +44,7 @@ const steps = [
           <li>Algum diferencial simples</li>
         </ul>
         <p class="ex">
-          <em>Ex.: Loja de roupas femininas com vendas pelo Instagram e entregas rápidas.</em>
+          <em>Ex.: Loja de roupas femininas que vende pelo Instagram e faz entregas rápidas na cidade.</em>
         </p>
       </div>
     `,
@@ -62,7 +65,7 @@ const steps = [
           <li>Rotina ou estilo de vida</li>
         </ul>
         <p class="ex">
-          <em>Ex.: Jovens de 15–18 anos, ensino médio, rotina corrida, estudam à noite.</em>
+          <em>Ex.: Mulheres de 25–35 anos, trabalham em horário comercial, gostam de se vestir bem e acompanham moda pelo Instagram.</em>
         </p>
       </div>
     `,
@@ -78,12 +81,12 @@ const steps = [
       <div class="helper">
         <p>Pense no resultado e na meta:</p>
         <ul>
-          <li>Resultado prático (ex.: aprender mais rápido)</li>
-          <li>Benefício pessoal (ex.: ganhar confiança)</li>
-          <li>Meta concreta (ex.: passar no vestibular)</li>
+          <li>Resultado prático (ex.: comprar com facilidade)</li>
+          <li>Benefício pessoal (ex.: sentir-se bonita e confiante)</li>
+          <li>Meta concreta (ex.: renovar o guarda-roupa gastando pouco)</li>
         </ul>
         <p class="ex">
-          <em>Ex.: Melhorar notas, falar sem travar, ter mais autonomia.</em>
+          <em>Ex.: Querem encontrar looks modernos, que vistam bem e caibam no orçamento, sem perder muito tempo pesquisando.</em>
         </p>
       </div>
     `,
@@ -101,10 +104,10 @@ const steps = [
         <ul>
           <li>Pouco tempo / rotina irregular</li>
           <li>Orçamento limitado</li>
-          <li>Dificuldade em manter foco ou começar</li>
+          <li>Dificuldade em encontrar peças que vistam bem</li>
         </ul>
         <p class="ex">
-          <em>Ex.: Não consegue praticar todo dia, sente insegurança, tem pouca grana para materiais.</em>
+          <em>Ex.: Não têm tempo de ir ao shopping, ficam na dúvida sobre tamanho das peças e têm medo de comprar roupa online e não servir.</em>
         </p>
       </div>
     `,
@@ -125,7 +128,7 @@ const steps = [
           <li>Preço, praticidade ou localização</li>
         </ul>
         <p class="ex">
-          <em>Ex.: Gostam do cuidado no atendimento e das aulas objetivas.</em>
+          <em>Ex.: Valorizam fotos reais das roupas, comentários de outras clientes e atendimento rápido pelo WhatsApp/Instagram.</em>
         </p>
       </div>
     `,
@@ -145,7 +148,7 @@ const steps = [
           <li>Tom de voz: direto, acolhedor, técnico, divertido…</li>
         </ul>
         <p class="ex">
-          <em>Ex.: WhatsApp e Instagram; tom direto, simples e acolhedor.</em>
+          <em>Ex.: Falam principalmente pelo Instagram e WhatsApp; preferem mensagens diretas, com fotos, vídeos curtos e respostas rápidas.</em>
         </p>
       </div>
     `,
