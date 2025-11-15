@@ -287,6 +287,11 @@ textarea:focus {
 .modal-card h3 {
   margin-top: 0;
 }
+#modal-estrategias .modal-card {
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 5vh auto;
+}
 
 /* ===========================
    CENTRALIZAÇÃO DO SOBRE
