@@ -324,8 +324,22 @@ async function gerarPersonas(payload) {
   }
 
   const data = await r.json();
-  return Array.isArray(data.personas) ? data.personas : [];
+  console.log("Resposta bruta da IA (generate-persona):", data);
+
+  // 1) Se vier no formato { personas: [...] }, usa direto
+  if (Array.isArray(data.personas)) {
+    return data.personas;
+  }
+
+  // 2) Se vier um ÚNICO objeto de persona, embrulha em array
+  if (data && typeof data === "object") {
+    return [data];
+  }
+
+  // 3) Qualquer outra coisa -> sem personas
+  return [];
 }
+
 
 // ==============================
 // BOTÃO: Gerar persona 🤖
