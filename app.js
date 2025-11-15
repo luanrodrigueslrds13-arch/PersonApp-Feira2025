@@ -398,7 +398,7 @@ function renderPersona(p) {
   setText("p-descricao", p?.descricao || "");
   fillList("p-objetivos", p?.objetivos || []);
   fillList("p-desafios", p?.desafios || []);
-  fillList("p-motivacoes", p?.motivacoes || []);
+  fillList("p-motivacoes", p?.motivacoes || p?.motivadores || []);
   fillList("p-canais", p?.canais || []);
   setText("p-frase", p?.frase || "");
 }
